@@ -38,5 +38,5 @@ function openTab(tabName) {
   }
 }
 
-// Set the user type (doctor/patient) based on your authentication logic, Since I'm unable to merge this code with PHP at the moment, we need to assign it here.
+// Set the user type (doctor/patient) based on authentication logic, Since I'm unable to merge this code with PHP at the moment, we need to assign it here.
 var userType = "patient";
