@@ -1,87 +1,98 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login Page</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      margin: 0;
-      padding: 20px;
-    }
-    
-    h1 {
-      color: #333333;
-      text-align: center;
-    }
-    
-    h2 {
-      color: #333333;
-      margin-top: 40px;
-    }
-    
-    form {
-      background-color: #ffffff;
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    
-    label {
-      display: block;
-      margin-bottom: 10px;
-      color: #666666;
-    }
-    
-    input[type="text"],
-    input[type="password"] {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #cccccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-      font-size: 14px;
-    }
-    
-    input[type="submit"] {
-      width: 100%;
-      padding: 10px;
-      background-color: #4caf50;
-      border: none;
-      color: #ffffff;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    
-    input[type="submit"]:hover {
-      background-color: #45a049;
-    }
-  </style>
+  <title>Hospital Portal</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-  <h1>Login</h1>
+  <h1>Hospital Portal</h1>
   
-  <h2>Admin Login</h2>
-  <form action="/admin-login" method="POST">
-    <label for="admin-username">Username:</label>
-    <input type="text" id="admin-username" name="admin-username" required><br>
+  <div class="tab-links">
+    <a href="#" class="tab-link active" onclick="openTab('login-tab')">Login</a>
+    <a href="#" class="tab-link" onclick="openTab('announcement-tab')">Announcement</a>
+    <a href="#" class="tab-link" onclick="openTab('messages-tab')">Messages</a>
+    <a href="#" class="tab-link" onclick="openTab('medicines-tab')">Medicines</a>
+  </div>
+
+  <div id="login-tab" class="tab active">
+    <h2>Doctor Login</h2>
+    <form action="/login" method="POST" onsubmit="return validateLogin()">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required><br>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required><br>
+
+      <input type="submit" value="Login">
+    </form>
+    <h2>Patient Login</h2>
+    <form action="/login" method="POST" onsubmit="return validateLogin()">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required><br>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required><br>
+
+      <input type="submit" value="Login">
+    </form>
+    <div id="error-message" class="error-message"></div>
+  </div>
+
+  <div id="announcement-tab" class="tab">
+    <h2>Announcement</h2>
+    <form action="/post-announcement" method="POST">
+      <label for="announcement">Announcement:</label>
+      <textarea id="announcement" name="announcement" rows="4" required></textarea><br>
+
+      <input type="submit" value="Post Announcement">
+    </form>
+
+    <div class="message-container">
+      <h2>Announcements</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+  </div>
+
+  <div id="messages-tab" class="tab">
+    <h2>Messages</h2>
+    <form action="/send-message" method="POST">
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="4" required></textarea><br>
+
+      <input type="submit" value="Send Message">
+    </form>
     
-    <label for="admin-password">Password:</label>
-    <input type="password" id="admin-password" name="admin-password" required><br>
-    
-    <input type="submit" value="Login as Admin">
-  </form>
-  
-  <h2>Customer Login</h2>
-  <form action="/customer-login" method="POST">
-    <label for="customer-username">Username:</label>
-    <input type="text" id="customer-username" name="customer-username" required><br>
-    
-    <label for="customer-password">Password:</label>
-    <input type="password" id="customer-password" name="customer-password" required><br>
-    
-    <input type="submit" value="Login as Customer">
-  </form>
+    <div class="message-container">
+      <h2>Inbox</h2>
+      <p>Message from Admin:</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <p>Message from Admin:</p>
+      <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+  </div>
+
+  <div id="medicines-tab" class="tab">
+    <h2>Medicines</h2>
+    <form action="/add-medicine" method="POST">
+      <label for="medicine-name">Medicine Name:</label>
+      <input type="text" id="medicine-name" name="medicine-name" required><br>
+
+      <label for="medicine-description">Description:</label>
+      <textarea id="medicine-description" name="medicine-description" rows="4" required></textarea><br>
+
+      <input type="submit" value="Add Medicine">
+    </form>
+
+    <div class="medicine-container">
+      <h2>Available Medicines</h2>
+      <p>Medicine 1:</p>
+      <p>Description 1</p>
+      <p>Medicine 2:</p>
+      <p>Description 2</p>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
 </body>
 </html>
