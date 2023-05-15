@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    h1 {
+      color: #333333;
+      text-align: center;
+    }
+    
+    h2 {
+      color: #333333;
+      margin-top: 40px;
+    }
+    
+    form {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: #666666;
+    }
+    
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #cccccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #4caf50;
+      border: none;
+      color: #ffffff;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>Login</h1>
+  
+  <h2>Admin Login</h2>
+  <form action="/admin-login" method="POST">
+    <label for="admin-username">Username:</label>
+    <input type="text" id="admin-username" name="admin-username" required><br>
+    
+    <label for="admin-password">Password:</label>
+    <input type="password" id="admin-password" name="admin-password" required><br>
+    
+    <input type="submit" value="Login as Admin">
+  </form>
+  
+  <h2>Customer Login</h2>
+  <form action="/customer-login" method="POST">
+    <label for="customer-username">Username:</label>
+    <input type="text" id="customer-username" name="customer-username" required><br>
+    
+    <label for="customer-password">Password:</label>
+    <input type="password" id="customer-password" name="customer-password" required><br>
+    
+    <input type="submit" value="Login as Customer">
+  </form>
+</body>
+</html>
