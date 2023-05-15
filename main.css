@@ -1,1 +1,82 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  color: #333333;
+  text-align: center;
+}
+
+.tab {
+  display: none;
+}
+
+.tab.active {
+  display: block;
+}
+
+.tab-links {
+  margin-bottom: 20px;
+}
+
+.tab-links a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border-radius: 5px 5px 0 0;
+  border: 1px solid #cccccc;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333333;
+  text-decoration: none;
+}
+
+.tab-links a.active {
+  background-color: #cccccc;
+}
+
+.form-container {
+  margin-bottom: 20px;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333333;
+}
+
+.form-container input[type="text"],
+.form-container input[type="password"],
+.form-container textarea {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}
+
+.form-container input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #333333;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.message-container {
+  margin-top: 20px;
+}
+
+.message-container h2 {
+  margin-bottom: 10px;
+  color: #333333;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
 
