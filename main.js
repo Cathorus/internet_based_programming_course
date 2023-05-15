@@ -14,33 +14,29 @@ function openTab(tabName) {
   document.getElementById(tabName).style.display = "block";
   event.currentTarget.classList.add("active");
 
-  // Show or hide the Announcement entry and tabs based on the active tab
+  // Show or hide the Announcement and Medicines sections based on the active tab and user type
   if (tabName === "announcement-tab") {
-    document.getElementById("announcement-form").style.display = "block";
-    document.getElementById("announcement-container").style.display = "block";
-    document.getElementById("message-form").style.display = "none";
-    document.getElementById("message-container").style.display = "none";
-  } else if (tabName === "messages-tab") {
-    document.getElementById("announcement-form").style.display = "none";
-    document.getElementById("announcement-container").style.display = "none";
-    document.getElementById("message-form").style.display = "block";
-    document.getElementById("message-container").style.display = "block";
-  } else {
-    document.getElementById("announcement-form").style.display = "none";
-    document.getElementById("announcement-container").style.display = "none";
-    document.getElementById("message-form").style.display = "none";
-    document.getElementById("message-container").style.display = "none";
+    if (userType === "doctor") {
+      document.getElementById("announcement-form").style.display = "none";
+      document.getElementById("announcement-container").style.display = "none";
+    }else {
+      document.getElementById("announcement-form").style.display = "block";
+      document.getElementById("announcement-container").style.display = "none";
+    }
+  } else if (tabName === "medicines-tab") {
+    if (userType === "doctor") {
+      // Show the medicine form for doctors
+      document.getElementById("medicine-form").style.display = "none";
+      document.getElementById("medicine-container").style.display = "none";
+      document.getElementById("medicine-error").style.display = "none";
+    } else {
+      // Show the message for non-doctors (patients)
+      document.getElementById("medicine-form").style.display = "block";
+      document.getElementById("medicine-container").style.display = "none";
+      document.getElementById("medicine-error").style.display = "block";
+    }
   }
 }
 
-function validateLogin() {
-  var username = document.getElementById("username").value;
-  var password = document.getElementById("password").value;
-
-  if (username === "" || password === "") {
-    document.getElementById("error-message").innerHTML = "Please enter a username and password.";
-    return false;
-  }
-
-  return true;
-}
+// Set the user type (doctor/patient) based on your authentication logic, Since I'm unable to merge this code with PHP at the moment, we need to assign it here.
+var userType = "patient";
