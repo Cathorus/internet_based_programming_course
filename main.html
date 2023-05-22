@@ -79,7 +79,7 @@
   <div id="medicines-tab" class="tab">
     <h2>Medicines</h2>
     
-    <!-- Add condition to check if user is a doctor -->
+  
     <?php if ($userType === 'doctor') { ?>
     <form action="/add-medicine" method="POST">
       <label for="medicine-name">Medicine Name:</label>
@@ -104,8 +104,6 @@
   </div>
 
   <script>
-    // JavaScript code here
-    // ...
     
     function validateLogin(userType) {
       var username;
