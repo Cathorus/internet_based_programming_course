@@ -1,84 +1,80 @@
 <?php
-// Database configuration
+// login.php
 $servername = "localhost";
-$username = "your_username";
-$password = "your_password";
-$dbname = "your_database_name";
+$username = "username";
+$password = "password";
+$dbname = "database";
 
-// Create a connection
+// Define variables and initialize with empty values
+$email = $password = "";
+$email_err = $password_err = "";
+
+// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+  die("Connection failed: " . $conn->connect_error);
 }
 
-// Define error messages
-$errors = [];
-$successMessage = "";
-
-// Validate form data
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $fullName = validateInput($_POST["fullName"]);
-    $email = validateInput($_POST["email"]);
-    $gender = validateInput($_POST["gender"]);
-
-    if (empty($fullName)) {
-        $errors[] = "Full Name is required.";
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    // Check if email is empty
+    if(empty(trim($_POST["email"]))){
+        $email_err = "Please enter email.";
+    } else{
+        $email = trim($_POST["email"]);
     }
-
-    if (empty($email)) {
-        $errors[] = "Email Address is required.";
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "Invalid email format.";
+    
+    // Check if password is empty
+    if(empty(trim($_POST["password"]))){
+        $password_err = "Please enter your password.";
+    } else{
+        $password = trim($_POST["password"]);
     }
-
-    if (empty($gender)) {
-        $errors[] = "Gender is required.";
-    }
-
-    // Insert data into database if there are no errors
-    if (empty($errors)) {
-        $sql = "INSERT INTO students (full_name, email, gender) VALUES ('$fullName', '$email', '$gender')";
-
-        if ($conn->query($sql) === true) {
-            $successMessage = "Student registered successfully.";
-        } else {
-            $errors[] = "Error: " . $sql . "<br>" . $conn->error;
+    
+    // Validate credentials
+    if(empty($email_err) && empty($password_err)){
+        // Prepare a select statement
+        $stmt = $conn->prepare("SELECT id, email, password FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        
+        // Store result
+        $stmt->store_result();
+        
+        // Check if email exists, if yes then verify password
+        if($stmt->num_rows == 1){                    
+            // Bind result variables
+            $stmt->bind_result($id, $email, $hashed_password);
+            if($stmt->fetch()){
+                if(password_verify($password, $hashed_password)){
+                    // Password is correct, so start a new session
+                    session_start();
+                    
+                    // Store data in session variables
+                    $_SESSION["loggedin"] = true;
+                    $_SESSION["id"] = $id;
+                    $_SESSION["email"] = $email;                            
+                    
+                    // Redirect user to welcome page
+                    header("location: welcome.php");
+                } else{
+                    // Display an error message if password is not valid
+                    $password_err = "The password you entered was not valid.";
+                }
+            }
+        } else{
+            // Display an error message if email doesn't exist
+            $email_err = "No account found with that email.";
         }
     }
+    
+    // Close statement
+    $stmt->close();
 }
 
-// Function to validate input and prevent SQL injection
-function validateInput($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-
-// Close the database connection
+// Close connection
 $conn->close();
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Student Registration Form - Results</title>
-</head>
-<body>
-    <h1>Student Registration Form - Results</h1>
-    
-    <?php
-    // Display errors if any
-    if (!empty($errors)) {
-        echo "<h3>Error:</h3>";
-        echo "<ul>";
-        foreach ($errors as $error) {
-            echo "<li>$error</li>";
-        }
-        echo "</ul>";
-    }
-
-    // Display success message
-    if (!empty($successMessage
