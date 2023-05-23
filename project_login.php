@@ -7,7 +7,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $password = $_POST["password"];
 
   // Connect to your database
-  // TODO: Fill in with your DB details
   $db = new mysqli('localhost', 'username', 'password', 'database');
 
   if ($db->connect_error) {
