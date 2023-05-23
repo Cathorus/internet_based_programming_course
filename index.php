@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
   <title>Hospital Portal</title>
   <link rel="stylesheet" type="text/css" href="main.css">
