@@ -5,7 +5,7 @@ Welcome! 🙋‍♂️ This repository is dedicated to the projects, homework as
 ## 📂 Contents
 
 1. 📚 Homework Assignments
-2. 🧪 Lab Applications
+2. 🧪 Lab Applications 
 3. 🛠️ Project Files
 
 ## 📚 Homework Assignments
