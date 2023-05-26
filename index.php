@@ -49,8 +49,8 @@
 
   <div id="announcement-tab" class="tab active">
     <h2>Announcement</h2>
-    <!-- Only show form if user is a doctor -->
     <?php if ($isAdmin): ?>
+      <!-- Only show form if user is a doctor -->
       <!-- Your form here -->
       <form action="post_announcement.php" method="POST">
         <label for="announcement">Announcement:</label>
@@ -68,8 +68,8 @@
 
   <div id="medicine-tab" class="tab">
     <h2>Medicine</h2>
-    <!-- Only show form if user is a doctor -->
     <?php if ($isAdmin): ?>
+      <!-- Only show form if user is a doctor -->
       <form action="prescribe_medicine.php" method="POST">
         <label for="patient">Patient:</label>
         <select id="patient" name="patient" required>
