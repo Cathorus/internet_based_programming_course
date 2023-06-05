@@ -34,3 +34,4 @@ The main project in this repository is an internet-based application. The files 
 
 Feel free to explore and provide feedback. For any questions or comments, don't hesitate to reach out! 👋
 
+Here's a video description of the code for my college professor: https://drive.google.com/file/d/149iHyIo_Z4QZZ__J1wqA3dr2fwBnZS8v/view?usp=sharing
